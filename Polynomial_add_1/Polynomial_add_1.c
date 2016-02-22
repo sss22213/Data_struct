@@ -8,7 +8,7 @@ typedef struct _Polynomial
 {
 	int start;
 	int finish;
-	term *items[30];
+	term *items[4];
 }Polynomial;
 
 //term
@@ -53,13 +53,21 @@ int main()
 	Polynomial *A;
 	A=(Polynomial*)malloc(sizeof(A));
 	A->start=0;
-	A->finish=19;
-	for(int i=0;i<20;i++)
+	A->finish=3;
+	for(int i=0;i<3;i++)
 	{
 		A->items[i]=(term*)malloc(sizeof(A->items[i]));
-		A->items[i]->coef=i*0.5;
-		A->items[i]->exp=i;	
+		if(A->items[i]==NULL)
+		{
+			perror("The items is NULL");
+                        exit(1);
+		}
 	}
+	for(int i=0;i<3;i++)
+        {
+        	A->items[i]->exp=i;
+		A->items[i]->coef=i*0.2;
+	}	
 	//B Polynomial
 	Polynomial *B;
 	B=(Polynomial*)malloc(sizeof(A));
