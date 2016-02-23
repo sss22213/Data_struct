@@ -44,7 +44,7 @@ void add_Poly(term **array,Polynomial *PolA,Polynomial *PolB)
 	//array C location
 	int start=(PolB->finish)+1;
 	int finish=0;
-	while(a<=PolA->finish && b<-PolB->finish)
+	while(a<=PolA->finish && b<=PolB->finish)
 	{
 		//compare
 		int cmp_num=array[a+(PolA->start)]->exp-array[b+(PolB->start)]->exp;
