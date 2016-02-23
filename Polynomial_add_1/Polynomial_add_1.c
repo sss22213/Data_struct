@@ -20,19 +20,19 @@ typedef struct _term
 
 void add_term_items(term **array,int length,Polynomial *Pol)
 {
-	if(Pol->finish>=length)
+	if(Pol->finish-Pol->start>=length)
 	{
 		perror("The length is too long");
 		exit(1);
 	}
-	for(int i=Pol->start;i<=Pol->finish-Pol->start;i++)
+	for(int i=Pol->start;i<=Pol->finish;i++)
 	{
 		if(array[i]==NULL)
 		{
 			perror("The items is NULL");
 			exit(1);
 		}
-		array[i]=Pol->items[i];
+		array[i]=Pol->items[i-Pol->start];
 	}
 }
 
@@ -70,11 +70,27 @@ int main()
 	}	
 	//B Polynomial
 	Polynomial *B;
-	B=(Polynomial*)malloc(sizeof(A));
-        B->start=2;
-        B->finish=5;
+	B=(Polynomial*)malloc(sizeof(Polynomial));
+        B->start=20;
+        B->finish=25;
+	for(int i=0;i<=(B->finish-B->start);i++)
+        {
+               	B->items[i]=(term*)malloc(sizeof(term));
+                if(B->items[i]==NULL)
+                {
+                        perror("The items is NULL");
+                        exit(1);
+                }
+        }
+        for(int i=0;i<=(B->finish-B->start);i++)
+        {
+                B->items[i]->exp=i;
+                B->items[i]->coef=i*0.2;
+        }
+
 	//implement
 	add_term_items(array,20,A);
+	add_term_items(array,6,B);
 	return 0;
 
 }
