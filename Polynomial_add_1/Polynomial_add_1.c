@@ -43,7 +43,6 @@ void add_Poly(term **array,Polynomial *PolA,Polynomial *PolB)
 	int b=0;
 	//array C location
 	int start=(PolB->finish)+1;
-	int finish=0;
 	while(a<=PolA->finish && b<=PolB->finish)
 	{
 		//compare
