@@ -37,8 +37,24 @@ void add_term_items(term **array,int length,Polynomial *Pol)
 }
 
 //Polynumial add
-void add_Poly(term **array,Polynomial *PolA,Polynomial *PolB)
+void add_Poly(term **array,int ary_len,Polynomial *PolA,Polynomial *PolB)
 {
+	if(PolA==NULL || PolB==NULL || array==NULL)
+	{
+		perror("Agument is NULL");
+		exit(1);
+	}
+	else if((PolA->finish-PolA->start==0) || (PolB->finish-PolB->start==0))
+	{
+
+		perror("PolY is Empty");
+                exit(1);
+	}
+	else if((PolA->finish-PolA->start)+(PolB->finish-PolB->start)>ary_len)
+	{
+		perror("Array is too short");
+                exit(1);
+	}
 	int a=0;
 	int b=0;
 	//array C location
@@ -131,7 +147,7 @@ int main()
 	//implement
 	add_term_items(array,20,A);
 	add_term_items(array,6,B);
-	add_Poly(array,A,B);
+	add_Poly(array,100,A,B);
 	return 0;
 
 }
