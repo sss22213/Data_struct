@@ -106,7 +106,7 @@ int main()
 	for(int i=0;i<20;i++)
         {
         	A->items[i]->exp=i;
-		A->items[i]->coef=i*0.2;
+		A->items[i]->coef=i;
 	}	
 	//B Polynomial
 	Polynomial *B;
@@ -125,7 +125,7 @@ int main()
         for(int i=0;i<=(B->finish-B->start);i++)
         {
                 B->items[i]->exp=i;
-                B->items[i]->coef=i*0.2;
+                B->items[i]->coef=i;
         }
 
 	//implement
