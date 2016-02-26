@@ -1,23 +1,24 @@
 #include <stdio.h>
-#include <strdlib.h>
-typedef struct _Mat
+#include <stdlib.h>
+typedef struct _SparseMat
 {
 	int row;
 	int col;
-}Mat;
+	int value;
+}SparseMat;
 
 int main()
 {
-	Mat *A[10];
+	SparseMat *A[10];
 	for(int i=0;i<10;i++)
 	{
-		A=(Mat*)malloc(sizeof(Mat));
+		A[i]=(SparseMat*)malloc(sizeof(SparseMat));
 		if(A==NULL)
 		{
 			perror("Memory leak");
 			exit(1);
 		}
 	}
-
+	
 	return 0;
 }
