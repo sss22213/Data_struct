@@ -61,7 +61,7 @@ void Sorting(SparseMat **Mat,int Mat_len)
 		SparseMat *Min=Mat[i];
 		for(int j=i+1;j<Mat_len;j++)
 		{
-			if((Mat[i]->row)*10+Mat[i]->col>(Mat[j]->row)*10+Mat[j]->col)
+			if((Min->row)*10+Min->col>(Mat[j]->row)*10+Mat[j]->col)
 			{
 				Min=Mat[j];
 			}
