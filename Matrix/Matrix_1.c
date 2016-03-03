@@ -7,6 +7,12 @@ typedef struct _SparseMat
 	int value;
 }SparseMat;
 
+typedef struct _index
+{
+	int RowSize;
+	int RowStart;
+}index;
+
 void add_items(SparseMat *Mat,int Mat_len,int row,int col,int value)
 {
 	if(row*col>Mat_len)
@@ -19,16 +25,16 @@ void add_items(SparseMat *Mat,int Mat_len,int row,int col,int value)
 	Mat->value=value;			
 }
 
-void Transpose(SparseMat **Mat,int Mat_len)
+void Transpose(SparseMat **MatA,int MatA_len,SparseMat **MatB,int MatB_len,index *ind,int ind_len)
 {
-	for(int i=0;i<Mat_len;i++)
+	
+	//Count
+	for(int i=0;i<MatA_len;i++)
 	{
-		int temp=0;
-		temp=Mat[i]->row;
-		Mat[i]->row=Mat[i]->col;
-		Mat[i]->col=temp;
 	}
 }
+
+
 void print(SparseMat **Mat,int Mat_len)
 {
 	printf("divid....\n");
@@ -53,27 +59,20 @@ void Swap_row_col(SparseMat *Mat1,SparseMat *Mat2)
         Mat1->value=Mat2->value;
         Mat2->value=Temp;
 }
-void Sorting(SparseMat **Mat,int Mat_len)
-{
-	
-	for(int i=0;i<Mat_len;i++)
-	{
-		SparseMat *Min=Mat[i];
-		for(int j=i+1;j<Mat_len;j++)
-		{
-			if((Min->row)*10+Min->col>(Mat[j]->row)*10+Mat[j]->col)
-			{
-				Min=Mat[j];
-			}
-		}
-			Swap_row_col(Min,Mat[i]);
-			//print(Mat,8);
-	}                       
-			
-}
 
 int main()
 {
+	index *ind[4]=NULL;
+        for(int i=0;i<4;i++)
+        {
+                ind[i]=(index*)malloc(sizeof(index));
+                if(ind[i]==NULL)
+                {
+                        perror("Memory leak");
+                        exit(1);
+                }
+        }
+	//Source A
 	SparseMat *A[10];
 	for(int i=0;i<10;i++)
 	{
@@ -92,11 +91,21 @@ int main()
 	add_items(A[5],10,2,3,-6);
 	add_items(A[6],10,4,0,91);
 	add_items(A[7],10,5,2,28);
-	Transpose(A,8);
-	Sorting(A,8);
-	for(int i=0;i<10;i++)
-	{
-		free(A[i]);
-	}
+	//Result B
+	SparseMat *B[10];
+        for(int i=0;i<10;i++)
+        {
+                B[i]=(SparseMat*)malloc(sizeof(SparseMat));
+                if(A==NULL)
+                {
+                        perror("Memory leak");
+                        exit(1);
+                }
+        }
+	ind[0]->RowSize=0;
+	ind[1]->RowSize=1;
+	ind[2]->RowSize=2;
+	ind[3]->RowSize=4;
+	Transpose(A,8,B,8,index,4);
 	return 0;
 }

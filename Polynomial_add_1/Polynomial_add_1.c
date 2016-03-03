@@ -148,6 +148,12 @@ int main()
 	add_term_items(array,20,A);
 	add_term_items(array,6,B);
 	add_Poly(array,100,A,B);
+	for(int i=0;i<100;i++)
+	{
+		free(array[i]);
+	}
+	free(A);
+	free(B);
 	return 0;
 
 }
